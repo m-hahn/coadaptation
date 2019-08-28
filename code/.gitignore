@@ -1,0 +1,4 @@
+*.swp
+ARCHIVE/
+__pycache__/
+raw/
