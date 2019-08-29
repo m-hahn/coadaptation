@@ -109,8 +109,6 @@ import numpy.random
 
 
 def orderChildrenRelative(sentence, remainingChildren, reverseSoftmax):
-#       childrenLinearized = []
-#       while len(remainingChildren) > 0:
        logits = [(x, distanceWeights[stoi_deps[sentence[x-1]["dependency_key"]]]) for x in remainingChildren]
        logits = sorted(logits, key=lambda x:x[1], reverse=(not reverseSoftmax))
        childrenLinearized = list(map(lambda x:x[0], logits))
@@ -360,30 +358,4 @@ print(outpath)
 with open(outpath, "w") as outFile:
    print(sum(list(map(lambda x:x[0], depLengths)))/float(len(depLengths)), file=outFile)
 
-#if False:
-#          print "Saving"
-#          save_path = "../../raw-results/"
-#
-#          with open(save_path+"/dependency_length/summaries/"+args.language+"_"+my_fileName+"_model_"+str(myID)+"_"+args.model+"_SHORT.tsv", "w") as outFile:
-#             print >> outFile, "\t".join(map(str,["Language", "FileName","ModelName","Counter", "Model", "Temperature", "OriginalCounter", "AverageLengthPerWord", "AverageLengthPerSentence", "OriginalLoss"]))
-#             lengths = []
-#             perSentenceLengths = []
-#             for y, l in enumerate(depLengths):
-#               perSentenceLengths.append(0)
-#               for e in l[2]:
-#                 lengths.append(e[1])
-#                 perSentenceLengths[-1] += e[1]
-#             print >> outFile, "\t".join(map(str,[args.language, myID, my_fileName, counter, args.model, args.temperature, originalCounter,float(sum(lengths))/len(lengths), float(sum(perSentenceLengths))/len(perSentenceLengths), "NA"]))
-#
-#          if args.printDetailedData:
-#            with open(save_path+"/dependency_length/"+language+"_"+my_fileName+"_model_"+args.model+".tsv", "w") as outFile:
-#               print >> outFile, "\t".join(map(str,["FileName","ModelName","Counter", "Model", "SentenceNumber", "Type", "Length", "Temperature"]))
-#               for y, l in enumerate(depLengths):
-#                 for e in l[2]:
-#                   print >> outFile, "\t".join(map(str,[myID, my_fileName, counter, args.model, y, e[0], e[1], args.temperature]))
-#  
-#
-#
-#          quit()
-#
-#
+
