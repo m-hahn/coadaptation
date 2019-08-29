@@ -1,4 +1,4 @@
-data = read.csv("output/dlm_ground_funchead_coarse.tsv", sep="\t")
+data = read.csv("output/memsurp_ground_coarse.tsv", sep="\t")
 
 
 library(ggplot2)
